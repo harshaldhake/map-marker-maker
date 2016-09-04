@@ -7,7 +7,8 @@ A small simple app made with Angular 2 for finding the perfect Google-Maps-like 
 Clone the repository, run `npm install` and `npm start`. Your default browser opens on `localhost:3000` and the app is running.
 
 ```console
-git clone https://github.com/lazarljubenovic/map-marker-maker  
+git clone https://github.com/lazarljubenovic/map-marker-maker
+cd map-marker-maker
 npm install
 npm start
 ```
