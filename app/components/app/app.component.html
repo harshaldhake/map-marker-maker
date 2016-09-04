@@ -1,0 +1,33 @@
+<article id="left">
+    <section id="settings">
+        <label>
+            <span class="name">head radius</span>
+            <input type="range" [(ngModel)]="headRadius" max="500">
+            <span class="current-value">{{headRadius}}</span>
+        </label>
+        <label>
+            <span class="name">hole ratio</span>
+            <input type="range" [(ngModel)]="holeRatio" max="1" step=".01">
+            <span class="current-value">{{holeRatio}}</span>
+        </label>
+        <label>
+            <span class="name">torso height</span>
+            <input type="range" [(ngModel)]="torsoHeight" max="500">
+            <span class="current-value">{{torsoHeight}}</span>
+        </label>
+        <label>
+            <span class="name">torso curvature</span>
+            <input type="range" [(ngModel)]="torsoCurvature" max="500">
+            <span class="current-value">{{torsoCurvature}}</span>
+        </label>
+    </section>
+
+    <textarea spellcheck="false" cols="30" rows="10"><path fill-rule="evenodd" d="{{pathD | compress}}"></path></textarea>
+</article>
+
+<article id="preview">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full"
+         viewBox="-500 -300 1000 1000">
+        <path fill-rule="evenodd" [attr.d]="pathD"></path>
+    </svg>
+</article>
