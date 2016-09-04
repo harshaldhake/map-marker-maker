@@ -30,8 +30,9 @@
             </label>
             <ul>
                 <li *ngFor="let availableColor of availableColors"
-                    [style.backgroundColor]="availableColor"
-                    (click)="color = availableColor"
+                    [style.backgroundColor]="availableColor.hex"
+                    (click)="color = availableColor.hex"
+                    [attr.data-color-name]="availableColor.name"
                 >&nbsp;</li>
             </ul>
         </div>

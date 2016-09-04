@@ -44,7 +44,7 @@ export class AppComponent {
     private torsoCurvature: number = 30;
 
     private color: string = MaterialColor['pink'][500];
-    private availableColors: string[] = [];
+    private availableColors: {hex: string, name: string}[] = [];
 
     private strokeWidth: number = 5;
     private strokeColor: string = "white";
@@ -89,7 +89,10 @@ export class AppComponent {
 
     constructor() {
         MaterialColorNames.forEach(color => {
-            this.availableColors.push(MaterialColor[color][500]);
+            this.availableColors.push({
+                hex: MaterialColor[color][500],
+                name: color
+            });
         });
     }
 
