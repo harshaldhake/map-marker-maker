@@ -25,7 +25,7 @@
         <h1>Style</h1>
         <div class="color">
             <label>
-                <span>Color</span>
+                <span>color</span>
                 <input type="text" [(ngModel)]="color" [style.color]="color" size="7" spellcheck="false">
             </label>
             <ul>
@@ -36,14 +36,46 @@
             </ul>
         </div>
 
+        <div class="border-shadow">
+            <label>
+                <span>stroke</span>
+                <input type="range" max="20" [(ngModel)]="strokeWidth">
+                <span>{{strokeWidth}}</span>
+            </label>
+            <label>
+                <span>shadow</span>
+                <input type="range" max="1" step=".01" [(ngModel)]="shadowOpacity">
+                <span>{{+shadowOpacity | toFixed:2}}</span>
+            </label>
+        </div>
+
     </section>
 
-    <textarea spellcheck="false" cols="30" rows="10"><path fill-rule="evenodd" fill="{{color}}" d="{{pathD | compress}}"></path></textarea>
+    <textarea spellcheck="false" cols="30" rows="10"><path stroke-linejoin="round" stroke="{{strokeColor}}" stroke-width="{{strokeWidth}}" fill="{{color}}" fill-rule="evenodd"  d="{{pathD | compress}}"></path></textarea>
 </article>
 
 <article id="preview">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full"
          viewBox="-500 -300 1000 1000">
-        <path [attr.fill]="color" fill-rule="evenodd" [attr.d]="pathD"></path>
+        <defs>
+            <filter id="dropshadow" height="130%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+                <feOffset dx="0" dy="10" result="offsetblur"/>
+                <feComponentTransfer xmlns="http://www.w3.org/2000/svg">
+                    <feFuncA type="linear" [attr.slope]="shadowOpacity"/>
+                </feComponentTransfer>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+
+        <path stroke-linejoin="round"
+              [attr.stroke]="strokeColor" [attr.stroke-width]="strokeWidth"
+              [attr.fill]="color" fill-rule="evenodd"
+              [attr.d]="pathD"
+              style="filter:url(#dropshadow)"
+        ></path>
     </svg>
 </article>

@@ -17,6 +17,17 @@ export class CompressPipe implements PipeTransform {
     }
 }
 
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+    name: 'toFixed'
+})
+export class ToFixedPipe implements PipeTransform {
+    transform(n: number, args: number[]): any {
+        return (+n).toFixed(+args);
+    }
+}
+
 @Component({
     moduleId: module.id,
     selector: 'my-app',
@@ -34,6 +45,11 @@ export class AppComponent {
 
     private color: string = MaterialColor['pink'][500];
     private availableColors: string[] = [];
+
+    private strokeWidth: number = 5;
+    private strokeColor: string = "white";
+
+    private shadowOpacity: number = .3;
 
     public get pathD(): string {
         return `

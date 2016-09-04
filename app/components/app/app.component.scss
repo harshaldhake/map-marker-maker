@@ -63,6 +63,7 @@ article {
     .color {
       display: flex;
       flex-direction: column;
+      margin-bottom: 1em;
 
       ul {
         width: 100%;
@@ -76,6 +77,21 @@ article {
           display: inline-block;
           cursor: pointer;
         }
+      }
+    }
+
+    .border-shadow {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      label > span:last-child {
+        width: 40px;
+        text-align: right;
+      }
+
+      input[type=range] {
+        margin: 0 1em;
       }
     }
   }
