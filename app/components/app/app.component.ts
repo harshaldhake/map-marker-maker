@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
+import * as MaterialColor from 'material-colors';
+
+const MaterialColorNames = [
+    'red', 'pink', 'purple', 'deepPurple', 'indigo', 'blue', 'lightBlue', 'cyan',
+    'teal', 'green', 'lightGreen', 'lime', 'yellow', 'amber', 'orange',
+    'deepOrange', 'brown', 'grey', 'blueGrey'
+];
 
 @Pipe({
     name: 'compress'
@@ -24,6 +31,9 @@ export class AppComponent {
     private holeRatio: number = .5;
     private torsoHeight: number = 100;
     private torsoCurvature: number = 30;
+
+    private color: string = MaterialColor['pink'][500];
+    private availableColors: string[] = [];
 
     public get pathD(): string {
         return `
@@ -59,6 +69,12 @@ export class AppComponent {
         S
           ${- this.headRadius * this.t * this.holeRatio} ${- this.headRadius * this.holeRatio}, 
           0 ${- this.headRadius * this.holeRatio}`;
+    }
+
+    constructor() {
+        MaterialColorNames.forEach(color => {
+            this.availableColors.push(MaterialColor[color][500]);
+        });
     }
 
 }

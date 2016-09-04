@@ -1,5 +1,6 @@
 <article id="left">
     <section id="settings">
+        <h1>Sizes</h1>
         <label>
             <span class="name">head radius</span>
             <input type="range" [(ngModel)]="headRadius" max="500">
@@ -20,14 +21,29 @@
             <input type="range" [(ngModel)]="torsoCurvature" max="500">
             <span class="current-value">{{torsoCurvature}}</span>
         </label>
+
+        <h1>Style</h1>
+        <div class="color">
+            <label>
+                <span>Color</span>
+                <input type="text" [(ngModel)]="color" [style.color]="color" size="7" spellcheck="false">
+            </label>
+            <ul>
+                <li *ngFor="let availableColor of availableColors"
+                    [style.backgroundColor]="availableColor"
+                    (click)="color = availableColor"
+                >&nbsp;</li>
+            </ul>
+        </div>
+
     </section>
 
-    <textarea spellcheck="false" cols="30" rows="10"><path fill-rule="evenodd" d="{{pathD | compress}}"></path></textarea>
+    <textarea spellcheck="false" cols="30" rows="10"><path fill-rule="evenodd" fill="{{color}}" d="{{pathD | compress}}"></path></textarea>
 </article>
 
 <article id="preview">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full"
          viewBox="-500 -300 1000 1000">
-        <path fill-rule="evenodd" [attr.d]="pathD"></path>
+        <path [attr.fill]="color" fill-rule="evenodd" [attr.d]="pathD"></path>
     </svg>
 </article>
